@@ -1,5 +1,3 @@
-const { writeOutput } = require("./input_output.js");
-const { inputData } = require("./input_output.js");
 class Coordinates {
   constructor(x, y) {
     this.x = x;
@@ -30,7 +28,6 @@ const findFigure = (gameField) => {
 
 const findLandscape = (gameField) => {
   const landscape = [];
-
   for (let line = 0; line < gameField.length; line++) {
     for (let column = 0; column < gameField[line].length; column++) {
       if (gameField[line][column] === "#") {
@@ -38,12 +35,11 @@ const findLandscape = (gameField) => {
       }
     }
   }
-
   return landscape;
 };
 
 function tetrisStep(field) {
-  let isMovable = true;
+  let figureDown = true;
 
   for (let i = 0; i < field.figure.length; i++) {
     for (let k = 0; k < field.landscape.length; k++) {
@@ -51,17 +47,17 @@ function tetrisStep(field) {
         field.figure[i].x === field.landscape[k].x &&
         field.figure[i].y + 1 === field.landscape[k].y
       ) {
-        isMovable = false;
+        figureDown = false;
       }
     }
   }
   for (let i = 0; i < field.figure.length; i++) {
     if (field.figure[i].y === field.height - 1) {
-      isMovable = false;
+      figureDown = false;
     }
   }
 
-  if (isMovable === true) {
+  if (figureDown === true) {
     for (let i = 0; i < field.figure.length; i++) {
       field.figure[i].y += 1;
     }

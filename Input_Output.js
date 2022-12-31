@@ -10,6 +10,7 @@ const parseInput = (fileName) => {
 };
 const inputData = parseInput("input.txt");
 
+
 const writeOutput = (data) => {
   fs.writeFileSync("output.txt", data);
 };
