@@ -5,12 +5,20 @@ const parseInput = (fileName) => {
     const lines = input.split('\n');
     const width = parseInt(lines[0].split(' ')[1], 10);
     const height = parseInt(lines[0].split(' ')[0], 10);
-    const startingField = lines.slice(1,height)
+    const gameField = lines.slice(1,height+1)
     // return [fieldHeight,fieldWidth,field]
-    return {width, height,startingField}
+    return {width, height,gameField}
 }
-
 const inputData = parseInput("input.txt")
-module.exports = {inputData}
 
-console.log(inputData);
+
+
+const writeOutput = (data) => {
+    fs.writeFileSync("output.txt", data);
+  };
+
+// writeOutput(finalField)
+
+module.exports = {inputData,writeOutput}
+
+// console.log(inputData);
