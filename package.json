@@ -1,0 +1,22 @@
+{
+  "name": "consoletetris",
+  "version": "1.0.0",
+  "description": "",
+  "main": "communication.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/water-korra/consoleTetris.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/water-korra/consoleTetris/issues"
+  },
+  "homepage": "https://github.com/water-korra/consoleTetris#readme",
+  "dependencies": {
+    "jest": "^29.3.1"
+  }
+}

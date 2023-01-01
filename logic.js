@@ -73,6 +73,7 @@ const playTetris = (field) => {
 };
 
 const renderField = (field) => {
+    console.log(field);
   field = playTetris(field);
   const newArray = [];
   for (let i = 0; i < field.height; i++) {
