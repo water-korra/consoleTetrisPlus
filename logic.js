@@ -4,7 +4,7 @@ class Coordinates {
     this.y = y;
   }
 }
-//тут коориданты решеток , p
+
 class Field {
   constructor(width, height, figure, landscape) {
     this.width = width;
@@ -13,7 +13,7 @@ class Field {
     this.landscape = landscape;
   }
 }
-//тут понятнов все
+
 
 const findFigure = (gameField) => {
   const figure = [];
@@ -27,7 +27,7 @@ const findFigure = (gameField) => {
   return figure;
 };
 
-//записывает координаты всех p
+
 
 const findLandscape = (gameField) => {
   const landscape = [];
@@ -40,14 +40,6 @@ const findLandscape = (gameField) => {
   }
   return landscape;
 };
-//записывает коориднаты всех решеток
-
-// const TetrisField = new Field(
-//     inputData.width,
-//     inputData.height,
-//     findFigure(inputData.gameField),
-//     findLandscape(inputData.gameField)
-// );
 
 function tetrisStep(field) {
   let figureDown = true;
@@ -75,7 +67,7 @@ function tetrisStep(field) {
   }
   return field;
 }
-//перемещает фигуру на одну кординату вниз
+
 
 const playTetris = (field) => {
   for (let i = 0; i < field.height; i++) {
@@ -84,7 +76,7 @@ const playTetris = (field) => {
   return field;
 };
 
-//перемищает фигуру до соприкосновения с решетками
+
 
 const renderField = (field) => {
   field = playTetris(field);
@@ -110,7 +102,6 @@ const renderField = (field) => {
   return newArray.join("\n");
 };
 
-//делает поле из точек, на нужные кординаты меняет точки на p и #
 
 module.exports = { renderField, Field, findFigure, findLandscape };
 
