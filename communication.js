@@ -12,6 +12,7 @@ const TetrisField = new Field(
 );
 //объект класа с полем из логики
 const finalField = renderField(TetrisField);
+console.log(finalField)
 //подставляю в renderField из логики TetrisField
 writeOutput(finalField);
 //записывюа в output.txt

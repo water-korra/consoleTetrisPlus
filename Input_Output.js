@@ -1,11 +1,7 @@
 const fs = require("fs");
 
-
-//ФУНКЦИЯ КОТОРАЯ ПАРСИТ input.txt и берет из него ширину высоту и поле
-const parseInput = (fileName) => {
-  const input = fs.readFileSync(fileName, "utf8");
+const parseInput = (input) => {
   const lines = input.split("\n");
-  console.log(lines);
   const width = parseInt(lines[0].split(" ")[1]);
   const height = parseInt(lines[0].split(" ")[0]);
   const fieldSize = lines[0];
@@ -13,14 +9,9 @@ const parseInput = (fileName) => {
   return { width, height, gameField, fieldSize };
 };
 
-const inputData = parseInput("input.txt"); //widht,height,field parsed from input.txt
 
 
-
-
-
-//функция для проверки инпут файла
-const checkInputData = (data) => { 
+const checkInputData = (data) => {
   let inputFileErrors = [];
   const gameSymbols = ["p", ".", "#"];
   if (/^\d+ \d+$/.test(data.fieldSize) === false) {
@@ -34,7 +25,7 @@ const checkInputData = (data) => {
       data.gameField.length !== data.height
     ) {
       inputFileErrors.push("field was not made according to width and height");
-      break;
+      break
     }
   }
   for (let i = 0; i < data.gameField.length; i++) {
@@ -47,23 +38,10 @@ const checkInputData = (data) => {
   }
   return inputFileErrors;
 };
-const checkedInputData = checkInputData(inputData);
 
-
-//Записывает готовое поле в output.txt
 const writeOutput = (data) => {
   fs.writeFileSync("output.txt", data);
 };
 
-//Если инпут файл прошел проверки , то експортирую в комуникационный слой запаршеное поле, функцию
-//которая записывает зарендереное поле в output.txt
-const importData = () => {
-  if (checkInputData(parseInput("input.txt")).length === 0) {
-    module.exports = {  writeOutput , parseInput};
-  } else {
-    console.log(checkedInputData);
-    process.exit();
-  }
-}
-importData()
 
+module.exports = {  writeOutput , parseInput, checkInputData};

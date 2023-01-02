@@ -42,6 +42,13 @@ const findLandscape = (gameField) => {
 };
 //записывает коориднаты всех решеток
 
+// const TetrisField = new Field(
+//     inputData.width,
+//     inputData.height,
+//     findFigure(inputData.gameField),
+//     findLandscape(inputData.gameField)
+// );
+
 function tetrisStep(field) {
   let figureDown = true;
 
@@ -102,8 +109,9 @@ const renderField = (field) => {
   }
   return newArray.join("\n");
 };
+
 //делает поле из точек, на нужные кординаты меняет точки на p и #
 
-module.exports = { Field, renderField, findFigure, findLandscape };
+module.exports = { renderField, Field, findFigure, findLandscape };
 
 
