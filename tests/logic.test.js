@@ -1,4 +1,4 @@
-const {renderField, Field, findFigure, findLandscape, playTetris, tetrisStep } = require("./logic");
+const {renderField, Field, findFigure, findLandscape, playTetris, tetrisStep } = require("../game/logic");
 
 describe("logic layes test", () => {
     test("findFigure function finds p(figure) coordinates in field", () => {

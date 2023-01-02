@@ -8,7 +8,7 @@ $ npm install
 ```
 
 ```bash
-$ node communcation.js
+$ node main.js input.txt
 ```
 ###To test it :
 

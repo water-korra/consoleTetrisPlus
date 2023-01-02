@@ -1,4 +1,4 @@
-const { writeOutput , parseInput, checkInputData}  = require("./io")
+const { writeOutput , parseInput, checkInputData}  = require("../game/io")
 
 describe("test of part of io layer", () => {
 

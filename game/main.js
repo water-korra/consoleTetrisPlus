@@ -1,9 +1,7 @@
 const fs = require("fs");
 
 const { renderField, Field, findFigure, findLandscape } = require("./logic");
-
 const { writeOutput, parseInput, checkInputData } = require("./io");
-
 const args = process.argv
 
 const main = (args) => {
@@ -41,7 +39,6 @@ const runProgram = (args, fileSystem, output) => {
 
     let input = fileSystem.readFile(args)
     let inputData =  parseInput(input)
-    console.log(inputData);
     let initState
 
     try{
@@ -67,4 +64,5 @@ const runProgram = (args, fileSystem, output) => {
     }
 };
 main(args);
+
 module.exports = {runProgram}

@@ -1,4 +1,4 @@
-const {runProgram} = require("./main");
+const {runProgram} = require("../game/main");
 let results = [];
 let output = {
   showResult(res) {
