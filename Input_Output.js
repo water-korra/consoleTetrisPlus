@@ -9,8 +9,6 @@ const parseInput = (input) => {
   return { width, height, gameField, fieldSize };
 };
 
-
-
 const checkInputData = (data) => {
   let inputFileErrors = [];
   const gameSymbols = ["p", ".", "#"];
