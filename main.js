@@ -2,9 +2,9 @@ const fs = require("fs");
 
 const { renderField, Field, findFigure, findLandscape } = require("./logic");
 
-const { writeOutput, parseInput, checkInputData } = require("./input_Output");
+const { writeOutput, parseInput, checkInputData } = require("./io");
 
-const args = ["node", "main.js", "input.txt"];
+const args = process.argv
 
 const main = (args) => {
     let fileSystem = {
@@ -31,7 +31,7 @@ const runProgram = (args, fileSystem, output) => {
         return;
     }
     if (!regEx.test(args)) {
-        output.showResult("Enter only txt args");
+        output.showResult("Enter only txt file");
         return;
     }
     if (!fileSystem.checkFile(args)) {
@@ -40,22 +40,31 @@ const runProgram = (args, fileSystem, output) => {
     }
 
     let input = fileSystem.readFile(args)
-    let inputData = parseInput(input)
+    let inputData =  parseInput(input)
+    console.log(inputData);
+    let initState
 
-    if (checkInputData(inputData).length > 0) {
-        console.log(".txt file has wrong format");
-        return;
+    try{
+        checkInputData(inputData)
+    } catch(error) {
+        initState = false
     }
-    let TetrisField = new Field(
-        inputData.width,
-        inputData.height,
-        findFigure(inputData.gameField),
-        findLandscape(inputData.gameField)
-    );
-
-    let finalField = renderField(TetrisField);
-    output.showResult(finalField);
-    writeOutput(finalField);
-    // }
+    
+    if(initState === false){
+        output.showResult("Wrong data in txt file")
+    }
+    else{
+        let TetrisField = new Field(
+            inputData.width,
+            inputData.height,
+            findFigure(inputData.gameField),
+            findLandscape(inputData.gameField)
+        );
+        let finalField = renderField(TetrisField);
+        output.showResult(finalField);
+        writeOutput(finalField);
+        
+    }
 };
 main(args);
+module.exports = {runProgram}

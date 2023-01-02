@@ -10,10 +10,11 @@ const parseInput = (input) => {
 };
 
 const checkInputData = (data) => {
-  let inputFileErrors = [];
+  // let inputFileErrors = [];
   const gameSymbols = ["p", ".", "#"];
   if (/^\d+ \d+$/.test(data.fieldSize) === false) {
-    inputFileErrors.push("Not correct field size numbers");
+    // inputFileErrors.push("Not correct field size numbers");
+    throw new Error("Not correct field size numbers")
   }
   for (let element of data.gameField) {
     if (
@@ -22,19 +23,21 @@ const checkInputData = (data) => {
       element.length !== data.width ||
       data.gameField.length !== data.height
     ) {
-      inputFileErrors.push("field was not made according to width and height");
-      break
+      // inputFileErrors.push("field was not made according to width and height");
+      // break
+      throw new Error("field was not made according to width and height")
     }
   }
   for (let i = 0; i < data.gameField.length; i++) {
     for (let x = 0; x < data.gameField[i].length; x++) {
       if (gameSymbols.includes(data.gameField[i][x]) === false) {
-        inputFileErrors.push("not correct symbol");
-        break;
+        // inputFileErrors.push("not correct symbol");
+        // break;
+        throw new Error("not correct symbol")
       }
     }
   }
-  return inputFileErrors;
+  // return inputFileErrors;
 };
 
 const writeOutput = (data) => {

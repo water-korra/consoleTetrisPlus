@@ -41,9 +41,9 @@ const findLandscape = (gameField) => {
   return landscape;
 };
 
+
 function tetrisStep(field) {
   let figureDown = true;
-
   for (let i = 0; i < field.figure.length; i++) {
     for (let k = 0; k < field.landscape.length; k++) {
       if (
@@ -67,6 +67,7 @@ function tetrisStep(field) {
   }
   return field;
 }
+
 
 
 const playTetris = (field) => {
@@ -102,8 +103,6 @@ const renderField = (field) => {
   return newArray.join("\n");
 };
 
-
-
-module.exports = { renderField, Field, findFigure, findLandscape };
+module.exports = { renderField, Field, findFigure, findLandscape, playTetris, tetrisStep };
 
 
