@@ -74,24 +74,22 @@ const runProgram = (args, fileSystem, output, param) => {
   const startFieldString = renderField(startField);
 
   let steps = getDifference(startField, TetrisField);
-  function playTetris(param) {
-    let finalField;
-
-    if (param === "printSteps") {
+  let finalField;
+  if(param === "printSteps") {
       output.showResult(startFieldString);
       for (let i = 0; i < steps; i++) {
         finalField = renderField(tetrisStep(TetrisField));
         output.showResult(finalField);
       }
-    } else {
+      return finalField
+    } 
+    else {
       for (let i = 0; i < steps; i++) {
         finalField = renderField(tetrisStep(TetrisField));
       }
       output.showResult(finalField);
     }
-  }
-  playTetris(param);
 };
 main(args);
 
-module.exports = { runProgram };
+module.exports = { runProgram  };
