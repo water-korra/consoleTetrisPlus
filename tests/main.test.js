@@ -58,7 +58,7 @@ describe("test for runProgram function", () => {
       },
     
       readFile(fileName) {
-        return "7 1\n...."
+        return "7 1\naaaa\npppp"
       }
     }
     runProgram('example.txt', fileSystem, output);

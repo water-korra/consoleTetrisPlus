@@ -92,11 +92,11 @@ const renderField = (field) => {
   }
   const renderedfField = newArray.join("\n")
   return renderedfField
-
 };
 
 function getDifference(init, final) {
   let defaultY = init.figure[0].y
+  let finalY
   for(let i = 0; i < final.height; i++){
       finalY = tetrisStep(init).figure[0].y  
   }

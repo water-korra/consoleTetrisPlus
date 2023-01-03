@@ -54,42 +54,45 @@ const runProgram = (args, fileSystem, output, param) => {
     initState = false;
   }
 
-  if ((initState = false)) {
+  if ((initState === false)) {
     output.showResult("Wrong data in txt file");
-    return;
+    return
   }
-
-  let TetrisField = new Field(
-    inputData.width,
-    inputData.height,
-    findFigure(inputData.gameField),
-    findLandscape(inputData.gameField)
-  );
-  let startField = new Field(
-    inputData.width,
-    inputData.height,
-    findFigure(inputData.gameField),
-    findLandscape(inputData.gameField)
-  );
-  const startFieldString = renderField(startField);
-
-  let steps = getDifference(startField, TetrisField);
-  let finalField;
-  if(param === "printSteps") {
-      output.showResult(`Step 0 \n${startFieldString}`);
-      for (let i = 0; i < steps; i++) {
-        finalField = renderField(tetrisStep(TetrisField));
-        output.showResult(` \nStep ${i+1} \n ${finalField}`);
+  else{
+    let TetrisField = new Field(
+      inputData.width,
+      inputData.height,
+      findFigure(inputData.gameField),
+      findLandscape(inputData.gameField)
+    );
+    let startField = new Field(
+      inputData.width,
+      inputData.height,
+      findFigure(inputData.gameField),
+      findLandscape(inputData.gameField)
+    );
+   
+    const startFieldString = renderField(startField);
+    let steps = getDifference(startField, TetrisField);
+    let finalField;
+    if(param === "printSteps") {
+        output.showResult(`Step 0 \n${startFieldString}`);
+        for (let i = 0; i < steps; i++) {
+          finalField = renderField(tetrisStep(TetrisField));
+          output.showResult(` \nStep ${i+1} \n${finalField}`);
+        }
+        return finalField
+      } 
+      else {
+        for (let i = 0; i < steps; i++) {
+          finalField = renderField(tetrisStep(TetrisField));
+        }
+        output.showResult(finalField);
       }
-      return finalField
-    } 
-    else {
-      for (let i = 0; i < steps; i++) {
-        finalField = renderField(tetrisStep(TetrisField));
-      }
-      output.showResult(finalField);
-    }
+  }
+  
 };
+
 main(args);
 
-module.exports = { runProgram  };
+module.exports = {runProgram};
