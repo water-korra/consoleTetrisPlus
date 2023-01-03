@@ -1,3 +1,4 @@
+
 class Coordinates {
   constructor(x, y) {
     this.x = x;
@@ -41,6 +42,12 @@ const findLandscape = (gameField) => {
   return landscape;
 };
 
+// const copy = new Field(
+//   inputData.width,
+//   inputData.height,
+//   findFigure(inputData.gameField),
+//   findLandscape(inputData.gameField))
+
 
 function tetrisStep(field) {
   let figureDown = true;
@@ -65,22 +72,12 @@ function tetrisStep(field) {
       field.figure[i].y += 1;
     }
   }
-  return field;
+  return field
 }
 
 
 
-const playTetris = (field) => {
-  for (let i = 0; i < field.height; i++) {
-    field = tetrisStep(field);
-  }
-  return field;
-};
-
-
-
 const renderField = (field) => {
-  field = playTetris(field);
   const newArray = [];
   for (let i = 0; i < field.height; i++) {
     newArray.push([]);
@@ -100,9 +97,23 @@ const renderField = (field) => {
   for (let i = 0; i < field.height; i++) {
     newArray[i] = newArray[i].join("");
   }
-  return newArray.join("\n");
+  const renderedfField = newArray.join("\n")
+  return renderedfField
+
 };
 
-module.exports = { renderField, Field, findFigure, findLandscape, playTetris, tetrisStep };
+
+
+function getDifference(init, final) {
+  let defaultY = init.figure[0].y
+  for(let i = 0; i < final.height; i++){
+      finalY = tetrisStep(final).figure[0].y  
+  }
+
+  let difference = finalY - defaultY
+  return difference
+}
+
+module.exports = { renderField, Field, findFigure,findLandscape, tetrisStep, getDifference};
 
 
