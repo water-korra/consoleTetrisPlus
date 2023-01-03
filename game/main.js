@@ -76,10 +76,10 @@ const runProgram = (args, fileSystem, output, param) => {
   let steps = getDifference(startField, TetrisField);
   let finalField;
   if(param === "printSteps") {
-      output.showResult(startFieldString);
+      output.showResult(`Step 0 \n${startFieldString}`);
       for (let i = 0; i < steps; i++) {
         finalField = renderField(tetrisStep(TetrisField));
-        output.showResult(finalField);
+        output.showResult(` \nStep ${i+1} \n ${finalField}`);
       }
       return finalField
     } 
