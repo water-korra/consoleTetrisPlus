@@ -8,43 +8,36 @@ const {
   tetrisStep,
   getDifference,
 } = require("./logic");
-const {  parseInput, checkInputData } = require("./io");
+
+
+const { parseInput, checkInputData } = require("./io");
 const args = process.argv;
 
-const main = (args) => {
-  let fileSystem = {
-    checkFile(file) {
-      return fs.existsSync(file);
-    },
-    readFile(fileName) {
-      const fileContent = fs.readFileSync(fileName, "utf-8");
-      return fileContent;
-    },
-  };
-  let output = {
-    showResult(gameResult) {
-      console.log(gameResult);
-    },
-  };
-  runProgram(args[2], fileSystem, output, args[3]);
+let output = {
+  showResult(gameResult) {
+    console.log(gameResult);
+  },
 };
 
-const runProgram = (args, fileSystem, output, param) => {
-  let regEx = /^.+\.txt$/;
+function runProgram(args, fs, output, param) {
+  function checkFile(file) {
+    return fs.existsSync(file)
+  }
+  function readFile(file) {
+    const fileContent = fs.readFileSync(file, "utf-8")
+    return fileContent
+  }
   if (!args) {
-    output.showResult("Run main.js together with txt args name");
+    output.showResult(`Hello. It's Tetris game. Please pass me me an input file. Example
+> node tetris.js input.txt`);
     return;
   }
-  if (!regEx.test(args)) {
-    output.showResult("Enter only txt file");
-    return;
-  }
-  if (!fileSystem.checkFile(args)) {
-    output.showResult("file doesn't exist");
+  if (!checkFile(args)) {
+    output.showResult("File doesn't exist");
     return;
   }
 
-  let input = fileSystem.readFile(args);
+  let input = readFile(args)
   let inputData = parseInput(input);
   let initState;
 
@@ -55,10 +48,10 @@ const runProgram = (args, fileSystem, output, param) => {
   }
 
   if ((initState === false)) {
-    output.showResult("Wrong data in txt file");
+    output.showResult("Wrong data in input file");
     return
   }
-  else{
+  else {
     let TetrisField = new Field(
       inputData.width,
       inputData.height,
@@ -71,28 +64,26 @@ const runProgram = (args, fileSystem, output, param) => {
       findFigure(inputData.gameField),
       findLandscape(inputData.gameField)
     );
-   
+
     const startFieldString = renderField(startField);
     let steps = getDifference(startField, TetrisField);
     let finalField;
-    if(param === "printSteps") {
-        output.showResult(`Step 0 \n${startFieldString}`);
-        for (let i = 0; i < steps; i++) {
-          finalField = renderField(tetrisStep(TetrisField));
-          output.showResult(` \nStep ${i+1} \n${finalField}`);
-        }
-        return finalField
-      } 
-      else {
-        for (let i = 0; i < steps; i++) {
-          finalField = renderField(tetrisStep(TetrisField));
-        }
-        output.showResult(finalField);
+    if (param === "printSteps") {
+      output.showResult(`Step 0\n${startFieldString}`);
+      for (let i = 0; i < steps; i++) {
+        finalField = renderField(tetrisStep(TetrisField));
+        output.showResult(` \nStep ${i + 1}\n${finalField}`);
       }
+      return finalField
+    }
+    else {
+      for (let i = 0; i < steps; i++) {
+        finalField = renderField(tetrisStep(TetrisField));
+      }
+      output.showResult(finalField);
+    }
   }
-  
 };
 
-main(args);
-
-module.exports = {runProgram};
+runProgram(args[2], fs, output, args[3])
+module.exports = { runProgram }
