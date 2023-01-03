@@ -42,13 +42,6 @@ const findLandscape = (gameField) => {
   return landscape;
 };
 
-// const copy = new Field(
-//   inputData.width,
-//   inputData.height,
-//   findFigure(inputData.gameField),
-//   findLandscape(inputData.gameField))
-
-
 function tetrisStep(field) {
   let figureDown = true;
   for (let i = 0; i < field.figure.length; i++) {
@@ -102,14 +95,11 @@ const renderField = (field) => {
 
 };
 
-
-
 function getDifference(init, final) {
   let defaultY = init.figure[0].y
   for(let i = 0; i < final.height; i++){
-      finalY = tetrisStep(final).figure[0].y  
+      finalY = tetrisStep(init).figure[0].y  
   }
-
   let difference = finalY - defaultY
   return difference
 }

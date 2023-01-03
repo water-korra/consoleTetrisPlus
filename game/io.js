@@ -37,4 +37,4 @@ const writeOutput = (data) => {
   fs.writeFileSync("output.txt", data);
 };
 
-module.exports = {  writeOutput , parseInput, checkInputData};
+module.exports = { parseInput, checkInputData};
